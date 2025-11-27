@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, X } from "lucide-react";
@@ -13,7 +13,7 @@ import {
   type RepairType,
 } from "@/lib/repair-data";
 
-export default function ResultsPage() {
+function ResultsContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -191,5 +191,19 @@ export default function ResultsPage() {
         </div>
       )}
     </main>
+  );
+}
+
+export default function ResultsPage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-[calc(100vh-7.5rem)] px-4 py-8 flex flex-col items-center">
+        <div className="w-full max-w-2xl space-y-6">
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </main>
+    }>
+      <ResultsContent />
+    </Suspense>
   );
 }
