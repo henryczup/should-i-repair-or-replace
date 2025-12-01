@@ -18,6 +18,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Should I Repair or Replace? | Phone Repair Calculator",
   description: "Get an honest economic analysis to decide if you should repair your phone at a shop, DIY, or replace it. Uses the 50% rule and smart depreciation curves.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
